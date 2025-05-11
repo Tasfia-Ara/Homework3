@@ -5,3 +5,4 @@ Throughout the term, you will submit some of your work on MarkUsLinks to an exte
   - Option 2 Download the starter files and manually copy them into your local repo — then add, commit, and push as usual.
 - Once you clone this project in IntelliJ, you can submit files by adding, committing, and pushing them, exactly as you did during the Fizz Buzz activity.
 - I made a new change to this doc - I should be adding and pushing to Markus
+- This is another change - I want to make sure it works
