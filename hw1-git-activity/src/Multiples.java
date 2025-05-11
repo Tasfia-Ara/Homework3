@@ -10,7 +10,7 @@ public class Multiples {
 //        System.out.println(count);
     }
     public static int main(){
-        return Multiples.main(1000, 3, 5)
+        return Multiples.main(1000, 3, 5);
     }
 //    Multiples obj = new Multiples(100);
 }
