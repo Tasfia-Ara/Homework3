@@ -12,7 +12,7 @@ public class Reduce {
             n = n /2;
             count++;
         }
-        return count
+        return count;
 //        System.out.println(count);
     }
 }
