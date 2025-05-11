@@ -40,7 +40,7 @@ public class TicTacToeBoard {
 
         You'll also need a clause to check whether board[row][col] is equal to '-'.
          */
-        if (board[row][col] == '-' && row >= 0 && col >= 0 && row < 3 && col < 3 ) {
+        if (row >= 0 && col >= 0 && row < 3 && col < 3 && board[row][col] == '-') {
             board[row][col] = currentPlayer;
             return true;
         }
