@@ -3,7 +3,7 @@ public class Reduce {
         reduceMethod(n);
     }
 
-    private static void reduceMethod(int n) {
+    private static int reduceMethod(int n) {
         int count = 0;
         while(n > 0){
             if (!(n % 2 == 0)) {
