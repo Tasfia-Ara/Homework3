@@ -20,7 +20,7 @@ public class MakeMoveUseCase implements MakeMoveInputBoundary {
         board.makeMove
         if (   ) {
          */
-        if (board.makeMove(row, col)) {
+        if (board.makeMove(row, col) && !(row>3 && col>3)) {
             char winner = board.checkWin();
             if (winner != '-') {
                 outputBoundary.presentWinner(winner);
