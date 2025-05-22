@@ -29,9 +29,6 @@ public class BST {
         this(null);
     }
 
-
-    // TODO Task: Implement the BST methods.
-
     public boolean isEmpty() {
         if (this.root == null){
             return true;
@@ -113,7 +110,6 @@ public class BST {
 
 
     private Integer extractMax() {
-        // TODO implement me!
         if (this.right.isEmpty()){
             Integer max_item = this.root;
             // Promote the left subtree
