@@ -4,6 +4,52 @@ public class BSTMultiSet extends MultiSet {
     // here; no need to explicitly write a new constructor.
     private final BST bst = new BST();
 
+    @Override
+    void add(Integer item) {
+        if (item != null) {
+            bst.insert(item);
+        }
+        else{
+            throw new IllegalArgumentException("Item cannot be null!");
+        }
+    }
+
+    @Override
+    void remove(Integer item) {
+        if (item != null) {
+            bst.delete(item);
+        }
+        else{
+            throw new IllegalArgumentException("Item cannot be null!");
+        }
+
+    }
+
+    @Override
+    boolean contains(Integer item) {
+        if (item != null) {
+            return bst.contains(item);
+        }
+        else{
+            throw new IllegalArgumentException("Item cannot be null!");
+        }
+    }
+
+    @Override
+    boolean isEmpty() {
+        return bst.isEmpty();
+    }
+
+    @Override
+    int count(Integer item) {
+        return bst.count(item);
+    }
+
+    @Override
+    int size() {
+        return bst.getLength();
+    }
+
     // TODO Task: hover the red squiggly on the first line and select 'Implement methods'.
     //            All listed methods should be selected. Press okay and then implement each
     //            method. As with the python version, this shouldn't require a lot of code to write.

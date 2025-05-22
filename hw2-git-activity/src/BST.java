@@ -1,3 +1,5 @@
+import java.util.Objects;
+
 /**
  * A minimal implementation of a binary search tree storing Integers.
  * See the Python version for additional documentation; we haven't copied over any docstrings here.
@@ -27,12 +29,13 @@ public class BST {
         this(null);
     }
 
-
-    // TODO Task: Implement the BST methods.
-
     public boolean isEmpty() {
-        // TODO implement me!
-        return false;
+        if (this.root == null){
+            return true;
+        }
+        else{
+            return false;
+        }
     }
 
     public boolean contains(Integer item) {
@@ -52,39 +55,99 @@ public class BST {
 
     }
 
-
     public void insert(Integer item) {
-        // TODO implement me!
+        // Cases:
+        // root is empty
+        if (this.isEmpty()){
+            this.root = item;
+            this.left = new BST();
+            this.right = new BST();
+        }
+        else if (item < this.root){
+            this.left.insert(item);
+        }
+        else{
+            this.right.insert(item);
+        }
     }
 
 
     public void delete(Integer item) {
-        // TODO implement me!
+        if (this.isEmpty()){
+            ; //same as a pass in python
+        }
+        else if (Objects.equals(item, this.root)){
+            // meaning root = item
+            this.deleteRoot();
+            // traverse this.left
+        }
+        else if (item > this.root){
+            this.right.delete(item);
+        }
+        else{
+            this.left.delete(item);
+        }
     }
 
     private void deleteRoot() {
-        // TODO implement me!
+        if (this.left.isEmpty() && this.right.isEmpty()) {
+            this.root = null;
+            this.left = null;
+            this.right = null;
+        }
+        else if (this.left.isEmpty()) {
+            this.root = this.right.root;
+            this.right = this.right.right;
+        }
+        else if (this.right.isEmpty()){
+            this.root = this.left.root;
+            this.left = this.left.left;
+        }
+        else{
+            this.root = this.left.extractMax();
+        }
     }
 
 
     private Integer extractMax() {
-        // TODO implement me!
-        return this.root; // dummy code; replace with correct code when you implement this.
+        if (this.right.isEmpty()){
+            Integer max_item = this.root;
+            // Promote the left subtree
+            this.deleteRoot();
+            return max_item;
+        }
+        else{
+            return this.right.extractMax();
+        }
     }
 
     public int height() {
-        // TODO implement me!
-        return 0; // dummy code; replace with correct code when you implement this.
+        if (this.isEmpty()) {
+            return 0;
+        } else {
+            return Math.max(this.left.height(), this.right.height()) + 1;
+        }
     }
 
     public int count(Integer item) {
-        // TODO implement me!
-        return 0; // dummy code; replace with correct code when you implement this.
+        if (this.isEmpty()) {
+            return 0;
+        } else if (this.root.equals(item)) {
+            return 1;
+        } else {
+            return this.left.count(item) + this.right.count(item);
+        }
+
     }
 
     public int getLength() {
-        // TODO implement me!
-        return 0; // dummy code; replace with correct code when you implement this.
+        if (this.isEmpty()){
+            return 0;
+        }
+        else{
+            return 1 + this.left.getLength() + this.right.getLength();
+
+        }
     }
 
     public static void main(String[] args) {
