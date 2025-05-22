@@ -132,10 +132,15 @@ public class BST {
     public int count(Integer item) {
         if (this.isEmpty()) {
             return 0;
-        } else if (this.root.equals(item)) {
-            return 1;
-        } else {
-            return this.left.count(item) + this.right.count(item);
+        }
+        else if (this.root > item){
+            return this.left.count(item);
+        }
+        else if (this.root == item){
+            return 1 + this.left.count(item) + this.right.count(item);
+        }
+        else{
+            return this.right.count(item);
         }
 
     }
