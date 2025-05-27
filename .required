@@ -1,7 +1,7 @@
 hw1-git-activity/src/Reduce.java true
 hw1-git-activity/src/Multiples.java true
-hw2-git-activity/src/BSTMultiSet.java false
 hw2-git-activity/src/BST.java false
+hw2-git-activity/src/BSTMultiSet.java false
 markus-test/important_notes.md true
 Java-Practice/src/CandyPlayer.java false
 extra01/src/main/java/Basics.java true
@@ -10,6 +10,6 @@ extra03/src/main/java/HandBag.java true
 extra03/src/main/java/Bag.java true
 extra03/src/main/java/CrossbodyBag.java true
 extra03/src/main/java/BagMain.java true
-extra04/src/main/java/Trader.java true
 extra04/src/main/java/DrivableTrader.java true
 extra04/src/main/java/DrivableMap.java true
+extra04/src/main/java/Trader.java true
