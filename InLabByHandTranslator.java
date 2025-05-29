@@ -22,11 +22,10 @@ public class InLabByHandTranslator implements Translator {
      * @return list of language abbreviations which are available for this country
      */
     public static final String CANADA = "can";
-    private String str = "can";
 
     @Override
     public List<String> getCountryLanguages(String country) {
-        if (str.equals(country)) {
+        if (CANADA.equals(country)) {
             return new ArrayList<>(List.of("de", "en", "zh"));
         }
         return new ArrayList<>();
@@ -38,10 +37,9 @@ public class InLabByHandTranslator implements Translator {
      *
      * @return list of country abbreviations for which we have translations available
      */
-
     @Override
     public List<String> getCountries() {
-        return new ArrayList<>(List.of(str));
+        return new ArrayList<>(List.of(CANADA));
     }
 
     /**
@@ -53,21 +51,16 @@ public class InLabByHandTranslator implements Translator {
      */
     @Override
     public String translate(String country, String language) {
-        // TODO Checkstyle: Return count is 5 (max allowed for non-void methods/ lambdas is 2).
-        // TODO Checkstyle: String literal expressions should be on the left side of an equals comparison
-        public String translate (String country, String language){
-            if (!country.equals(str)) {
-                return null;
-            }
-            String name = null;
-            if ("de".equals(language)) {
-                name = "Kanada";
-            } else if ("en".equals(language)) {
-                name = "Canada";
-            } else if ("zh".equals(language)) {
-                name = "加拿大";
-            }
-            return name;
+        String result = null;
+        if ("de".equals(language)) {
+            result = "Kanada";
         }
+        else if ("en".equals(language)) {
+            result = "Canada";
+        }
+        else if ("zh".equals(language)) {
+            result = "加拿大";
+        }
+        return result;
     }
 }
