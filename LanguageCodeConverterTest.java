@@ -17,4 +17,29 @@ public class LanguageCodeConverterTest {
         LanguageCodeConverter converter = new LanguageCodeConverter();
         assertEquals(184, converter.getNumLanguages());
     }
+
+    @Test
+    public void fromLanguageCodeCa() {
+        LanguageCodeConverter converter = new LanguageCodeConverter();
+        assertEquals("Catalan, Valencian", converter.fromLanguageCode("ca"));
+    }
+
+    @Test
+    public void fromLanguageCodeDv() {
+        LanguageCodeConverter converter = new LanguageCodeConverter();
+        assertEquals("Dhivehi, Divehi, Maldivian", converter.fromLanguageCode("dv"));
+    }
+
+    @Test
+    public void fromLanguageAb() {
+        LanguageCodeConverter converter = new LanguageCodeConverter();
+        assertEquals("ab", converter.fromLanguage("Abkhazian"));
+    }
+
+    @Test
+    public void fromLanguageCa() {
+        LanguageCodeConverter converter = new LanguageCodeConverter();
+        assertEquals("ca", converter.fromLanguage("Valencian"));
+    }
+
 }
