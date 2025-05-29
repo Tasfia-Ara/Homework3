@@ -1,5 +1,6 @@
 package org.translation;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
@@ -24,8 +25,8 @@ public class Main {
         // TODO Task: once you finish the JSONTranslator,
         //            you can use it here instead of the InLabByHandTranslator
         //            to try out the whole program!
-        // Translator translator = new JSONTranslator(null);
-        Translator translator = new InLabByHandTranslator();
+        Translator translator = new JSONTranslator(); //TODO Fix JSONTranslator
+        //Translator translator = new InLabByHandTranslator();
 
         runProgram(translator);
     }
@@ -39,15 +40,17 @@ public class Main {
     public static void runProgram(Translator translator) {
         while (true) {
             String country = promptForCountry(translator);
+            CountryCodeConverter converter = new CountryCodeConverter();
+            String code = converter.fromCountry(country);
             String q = "quit";
 
             if (q.equals(country)) {
                 break;
             }
-            // TODO Task: Once you switch promptForCountry so that it returns the country
+            // TODOoo Task: Once you switch promptForCountry so that it returns the country
             //            name rather than the 3-letter country code, you will need to
             //            convert it back to its 3-letter country code when calling promptForLanguage
-            String language = promptForLanguage(translator, country);
+            String language = promptForLanguage(translator, code); // fix later if needed
             if (q.equals(language)) {
                 break;
             }
@@ -70,11 +73,20 @@ public class Main {
     // Note: CheckStyle is configured so that we don't need javadoc for private methods
     private static String promptForCountry(Translator translator) {
         List<String> countries = translator.getCountries();
+        CountryCodeConverter converter = new CountryCodeConverter();
+        List<String> countryNames = new ArrayList<>();
+        for (String countryCode : countries){
+            countryNames.add(converter.fromCountryCode(countryCode));
+        }
+        countryNames.sort(null);
+        for (String countryName : countryNames) {
+            System.out.println(countryName);
+        }
         // TODO Task: replace the following println call, sort the countries alphabetically,
         //            and print them out; one per line
         //      hint: class Collections provides a static sort method
         // TODO Task: convert the country codes to the actual country names before sorting
-        System.out.println(countries);
+//        System.out.println(countries);
 
         System.out.println("select a country from above:");
 
@@ -88,7 +100,12 @@ public class Main {
 
         // TODO Task: replace the line below so that we sort the languages alphabetically and print them out; one per line
         // TODO Task: convert the language codes to the actual language names before sorting
-        System.out.println(translator.getCountryLanguages(country));
+        List<String> languages = translator.getCountryLanguages(country);
+        languages.sort(null);
+        for (String language : languages) {
+            System.out.println(language);
+        }
+//        System.out.println(translator.getCountryLanguages(country));
 
         System.out.println("select a language from above:");
 
