@@ -16,7 +16,7 @@ public class CountryCodeConverter {
 
     /**
      * Default constructor which will load the country codes from "country-codes.txt"
-     * in the resources folder.
+     * in the resources folder. lala
      */
     public CountryCodeConverter() {
         this("country-codes.txt");
