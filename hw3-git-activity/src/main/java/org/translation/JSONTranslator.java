@@ -49,8 +49,8 @@ public class JSONTranslator implements Translator {
                     }
 
                 }
-                String englishName = jsonArray.getJSONObject(i).get("en").toString();
-                countryTranslations.put(englishName, translations);
+                String countryCode = jsonArray.getJSONObject(i).get("alpha3").toString();
+                countryTranslations.put(countryCode, translations);
             }
         }
         catch (IOException | URISyntaxException ex) {
@@ -60,10 +60,11 @@ public class JSONTranslator implements Translator {
 
     @Override
     public List<String> getCountryLanguages(String country) {
-        CountryCodeConverter converter = new CountryCodeConverter();
-        String countryName = converter.fromCountryCode(country);
+//        CountryCodeConverter converter = new CountryCodeConverter();
+//        String countryName = converter.fromCountryCode(country);
+        String countryLower = country.toLowerCase();
         List<String> languages = new ArrayList<>();
-        Map<String, ?> translations = countryTranslations.get(countryName);
+        Map<String, ?> translations = countryTranslations.get(countryLower);
         if (translations != null) {
             languages.addAll(translations.keySet());
         }
@@ -72,23 +73,20 @@ public class JSONTranslator implements Translator {
 
     @Override
     public List<String> getCountries() {
-        CountryCodeConverter countryCodeConverter = new CountryCodeConverter();
-        List<String> finalCountryList = new ArrayList<>();
+//        CountryCodeConverter countryCodeConverter = new CountryCodeConverter();
         List<String> countries = new ArrayList<>();
-        for (String country : countryTranslations.keySet()) {
-            countries.add(country);
+        for (String code : countryTranslations.keySet()) {
+            countries.add(code);
         }
-        for (String country : countries) {
-            finalCountryList.add(countryCodeConverter.fromCountry(country));
-        }
-        return finalCountryList;
+        return countries;
     }
 
     @Override
     public String translate(String country, String language) {
-        CountryCodeConverter converter = new CountryCodeConverter();
-        String countryName = converter.fromCountryCode(country);
-        Map<String, String> translations = countryTranslations.get(countryName);
-        return translations.get(language);
+//        CountryCodeConverter converter = new CountryCodeConverter();
+//        String countryName = converter.fromCountryCode(country);
+        var values = countryTranslations.get(country);
+        return values.get(language);
+
     }
 }
