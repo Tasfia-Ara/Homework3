@@ -56,7 +56,6 @@ public class JSONTranslationExample {
         }
         return "Country not found";
     }
-
     /**
      * Prints the Spanish translation of Canada.
      * @param args not used

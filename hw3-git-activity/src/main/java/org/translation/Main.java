@@ -41,9 +41,6 @@ public class Main {
             if (q.equals(country)) {
                 break;
             }
-            // TODOoo Task: Once you switch promptForCountry so that it returns the country
-            //            name rather than the 3-letter country code, you will need to
-            //            convert it back to its 3-letter country code when calling promptForLanguage
             String language = promptForLanguage(translator, code.toLowerCase()); // fix later if needed
             if (q.equals(language)) {
                 break;

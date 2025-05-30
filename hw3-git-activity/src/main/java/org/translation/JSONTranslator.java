@@ -80,7 +80,6 @@ public class JSONTranslator implements Translator {
         }
         return countries;
     }
-
     @Override
     public String translate(String country, String language) {
         var values = countryTranslations.get(country);

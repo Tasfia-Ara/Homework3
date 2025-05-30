@@ -40,7 +40,6 @@ public class CountryCodeConverter {
                 }
                 countryMap.put(lineElements[0], codes);
             }
-
         }
         catch (IOException | URISyntaxException ex) {
             throw new RuntimeException(ex);
