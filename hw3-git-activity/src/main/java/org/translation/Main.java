@@ -58,7 +58,6 @@ public class Main {
             }
         }
     }
-
     // Note: CheckStyle is configured so that we don't need javadoc for private methods
     private static String promptForCountry(Translator translator) {
         List<String> countries = translator.getCountries();
