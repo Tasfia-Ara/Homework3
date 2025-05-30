@@ -76,7 +76,6 @@ public class Main {
 
         Scanner s = new Scanner(System.in);
         return s.nextLine();
-
     }
     // Note: CheckStyle is configured so that we don't need javadoc for private methods
     private static String promptForLanguage(Translator translator, String country) {

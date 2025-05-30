@@ -43,6 +43,7 @@ public class JSONTranslator implements Translator {
 //                    String key = jsonArray.getString(j);
 //                    translations.put(jsonArray.getString(j), jsonArray.getString(j - 1));
 //                }
+                
                 for (var key : name.keySet()) {
                     if (!Objects.equals(key, "id") && !Objects.equals(key, "alpha2") && !Objects.equals(key, "alpha3")){
                         translations.put(key, jsonArray.getJSONObject(i).get(key).toString());
