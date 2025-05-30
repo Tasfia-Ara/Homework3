@@ -13,6 +13,7 @@ public class JSONDemo {
      * @param args not used
      */
     public static void main(String[] args) {
+        //final version
         String jsonData = "[{\"key1\" : \"string1a\", \"key2\":21}, {\"key1\" : \"string1b\", \"key2\":22}]";
         JSONArray jsonArray = new JSONArray(jsonData);
         System.out.println(jsonArray);

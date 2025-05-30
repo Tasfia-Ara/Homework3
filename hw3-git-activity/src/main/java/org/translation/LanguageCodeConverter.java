@@ -31,6 +31,7 @@ public class LanguageCodeConverter {
      */
     public LanguageCodeConverter(String filename) {
         try {
+            //final version
             List<String> lines = Files.readAllLines(Paths.get(getClass()
                     .getClassLoader().getResource(filename).toURI()));
             for (int i = 1; i < lines.size(); i++) {

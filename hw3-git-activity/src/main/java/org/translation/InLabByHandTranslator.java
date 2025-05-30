@@ -9,6 +9,7 @@ import java.util.List;
  * the country code "can" to several languages.
  */
 public class InLabByHandTranslator implements Translator {
+    //final version
     /**
      * Returns the language abbreviations for all languages whose translations are
      * available for the given country.

@@ -18,6 +18,7 @@ public class JSONTranslationExample {
     // Note: CheckStyle is configured so that we are allowed to omit javadoc for constructors
     public JSONTranslationExample() {
         try {
+            //final version
             // this next line of code reads in a file from the resources folder as a String,
             // which we then create a new JSONArray object from.
             String jsonString = Files.readString(Paths.get(getClass()

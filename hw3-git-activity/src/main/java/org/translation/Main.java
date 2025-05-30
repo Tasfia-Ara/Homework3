@@ -20,6 +20,7 @@ public class Main {
      * @param args not used by the program
      */
     public static void main(String[] args) {
+        //final version
         Translator translator = new JSONTranslator();
         //Translator translator = new InLabByHandTranslator();
         runProgram(translator);
