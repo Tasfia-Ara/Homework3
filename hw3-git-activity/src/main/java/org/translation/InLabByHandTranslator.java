@@ -36,7 +36,6 @@ public class InLabByHandTranslator implements Translator {
     public List<String> getCountries() {
         return new ArrayList<>(List.of(CANADA));
     }
-
     /**
      * Returns the name of the country based on the specified country abbreviation and language abbreviation.
      *

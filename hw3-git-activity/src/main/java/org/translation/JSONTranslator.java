@@ -35,15 +35,9 @@ public class JSONTranslator implements Translator {
             String jsonString = Files.readString(Paths.get(getClass().getClassLoader().getResource(filename).toURI()));
 
             JSONArray jsonArray = new JSONArray(jsonString);
-
             for (int i = 0; i < jsonArray.length(); i++) {
                 Map<String, String> translations = new HashMap<>();
                 var name = jsonArray.getJSONObject(i);
-//                for (int j = 2; j < jsonArray.length(); j++) {
-//                    String key = jsonArray.getString(j);
-//                    translations.put(jsonArray.getString(j), jsonArray.getString(j - 1));
-//                }
-                
                 for (var key : name.keySet()) {
                     if (!Objects.equals(key, "id") && !Objects.equals(key, "alpha2") && !Objects.equals(key, "alpha3")){
                         translations.put(key, jsonArray.getJSONObject(i).get(key).toString());

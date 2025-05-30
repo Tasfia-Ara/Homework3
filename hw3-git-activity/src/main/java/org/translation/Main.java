@@ -73,7 +73,6 @@ public class Main {
             System.out.println(countryName);
         }
         System.out.println("select a country from above:");
-
         Scanner s = new Scanner(System.in);
         return s.nextLine();
     }

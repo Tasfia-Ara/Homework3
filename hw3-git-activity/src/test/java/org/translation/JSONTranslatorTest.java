@@ -9,7 +9,6 @@ import static org.junit.Assert.*;
 public class JSONTranslatorTest {
 
     JSONTranslator jsonTranslator = new JSONTranslator();
-
     @Test
     public void getCountryLanguages() {
        List<String> countryLanguages = jsonTranslator.getCountryLanguages("can");

@@ -30,11 +30,9 @@ public class LanguageCodeConverter {
      * @throws RuntimeException if the resource file can't be loaded properly
      */
     public LanguageCodeConverter(String filename) {
-
         try {
             List<String> lines = Files.readAllLines(Paths.get(getClass()
                     .getClassLoader().getResource(filename).toURI()));
-
             for (int i = 1; i < lines.size(); i++) {
                 String[] parts = lines.get(i).split("\t");
                 if (parts[0].contains(",")) {
