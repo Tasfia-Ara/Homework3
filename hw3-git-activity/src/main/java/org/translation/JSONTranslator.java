@@ -14,7 +14,7 @@ import org.json.JSONArray;
  */
 public class JSONTranslator implements Translator {
 
-    private final Map<String, ArrayList<String>> countryTranslations = new HashMap<>();
+    private final Map<String, Map<String, String>> countryTranslations = new HashMap<>();
 
     /**
      * Constructs a JSONTranslator using data from the sample.json resources file.
@@ -37,15 +37,13 @@ public class JSONTranslator implements Translator {
             JSONArray jsonArray = new JSONArray(jsonString);
 
             for (int i = 0; i < jsonArray.length(); i++) {
+                Map<String, String> translations = new HashMap<>();
                 var name = jsonArray.getJSONObject(i);
-                //making changes to Isha's code
-                for (String langCode : name.keySet()) {
-                    if (!countryTranslations.containsKey(langCode)) {
-                        countryTranslations.put(langCode, new ArrayList<>());
-                    }
-                    countryTranslations.get(langCode).add(jsonArray.getJSONObject(i).getString("translation"));
-                            name.get(langCode));
+                for (var key : name.keySet()) {
+                    translations.put(key, jsonArray.getJSONObject(i).get(key).toString());
                 }
+                String englishName = jsonArray.getJSONObject(i).get("en").toString();
+                countryTranslations.put(englishName, translations);
             }
         }
         catch (IOException | URISyntaxException ex) {
@@ -55,39 +53,31 @@ public class JSONTranslator implements Translator {
 
     @Override
     public List<String> getCountryLanguages(String country) {
-        List<String> languageList = new ArrayList<>();
-        for (String langCode : countryTranslations.keySet()) {
-            if (countryTranslations.get(langCode).contains(country)) {
-                languageList.add(langCode);
-            }
+        Map <String, String> availableLang = countryTranslations.get(country);
+        List <String> languages = new ArrayList<>();
+        for (String lang : availableLang.keySet()) {
+            languages.add(lang);
         }
-        if(!languageList.isEmpty()){
-            return languageList;
-        }
-        else{
-            return null;
-        }
+        return languages;
     }
 
     @Override
     public List<String> getCountries() {
+        CountryCodeConverter countryCodeConverter = new CountryCodeConverter();
+        List<String> finalCountryList = new ArrayList<>();
         List<String> countries = new ArrayList<>();
-        for (String langCode : countryTranslations.keySet()) {
-            countries.addAll(countryTranslations.get(langCode));
+        for (String country : countryTranslations.keySet()) {
+            countries.add(country);
         }
-        return countries;
-//        return new ArrayList<>(countryTranslations.keySet());
+        for (String country : countries) {
+            finalCountryList.add(countryCodeConverter.fromCountry(country));
+        }
+        return finalCountryList;
     }
 
     @Override
     public String translate(String country, String language) {
-        for (String langCode : countryTranslations.keySet()) {
-            for (int j = 0; j < countryTranslations.get(langCode).size(); j++) {
-                if (countryTranslations.get(langCode).get(j).equals(language)) {
-                    return countryTranslations.get(langCode).get(j);
-                }
-            }
-        }
-    return null;
+        Map<String, String> translations = countryTranslations.get(country);
+        return translations.get(language);
     }
 }
