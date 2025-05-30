@@ -39,8 +39,15 @@ public class JSONTranslator implements Translator {
             for (int i = 0; i < jsonArray.length(); i++) {
                 Map<String, String> translations = new HashMap<>();
                 var name = jsonArray.getJSONObject(i);
+//                for (int j = 2; j < jsonArray.length(); j++) {
+//                    String key = jsonArray.getString(j);
+//                    translations.put(jsonArray.getString(j), jsonArray.getString(j - 1));
+//                }
                 for (var key : name.keySet()) {
-                    translations.put(key, jsonArray.getJSONObject(i).get(key).toString());
+                    if (!Objects.equals(key, "id") && !Objects.equals(key, "alpha2") && !Objects.equals(key, "alpha3")){
+                        translations.put(key, jsonArray.getJSONObject(i).get(key).toString());
+                    }
+
                 }
                 String englishName = jsonArray.getJSONObject(i).get("en").toString();
                 countryTranslations.put(englishName, translations);
@@ -53,10 +60,12 @@ public class JSONTranslator implements Translator {
 
     @Override
     public List<String> getCountryLanguages(String country) {
-        Map <String, String> availableLang = countryTranslations.get(country);
-        List <String> languages = new ArrayList<>();
-        for (String lang : availableLang.keySet()) {
-            languages.add(lang);
+        CountryCodeConverter converter = new CountryCodeConverter();
+        String countryName = converter.fromCountryCode(country);
+        List<String> languages = new ArrayList<>();
+        Map<String, ?> translations = countryTranslations.get(countryName);
+        if (translations != null) {
+            languages.addAll(translations.keySet());
         }
         return languages;
     }
@@ -77,7 +86,9 @@ public class JSONTranslator implements Translator {
 
     @Override
     public String translate(String country, String language) {
-        Map<String, String> translations = countryTranslations.get(country);
+        CountryCodeConverter converter = new CountryCodeConverter();
+        String countryName = converter.fromCountryCode(country);
+        Map<String, String> translations = countryTranslations.get(countryName);
         return translations.get(language);
     }
 }
